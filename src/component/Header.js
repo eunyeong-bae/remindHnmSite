@@ -1,22 +1,38 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars,faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBars,faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const navMenu = ['여성','Divided','남성','신생아/유아','아동','H&M HOME','Sale','지속가능성'];
 
 const Header = () => {
+    const navigate = useNavigate();
   return (
     <div className='d-flex header-wrap'>
         <div className='d-flex header-top'>
-            <FontAwesomeIcon icon={faBars} size="lg" />
+            <div className='header-bars'>
+                <FontAwesomeIcon className='side-bars' icon={faBars} size="lg" />
+                <div className='side-navbar'>
+                    <div className='side-close-btn'>
+                        <FontAwesomeIcon icon={faX} />
+                    </div>
+                    <div className='d-flex side-list-wrap'>
+                        { navMenu.map(menu => {
+                            return (
+                                <p>{menu}</p>
+                            )
+                        })}
+                    </div>
+                </div>
+            </div>
             <div className='d-flex header-login'>
                 <FontAwesomeIcon icon={faUser} size="lg" />
-                <p>로그인</p>
+                <p onClick={() => navigate('/login')}>로그인</p>
             </div>
         </div>
 
-        <div className='header-logo'>
+        <div className='header-logo' onClick={()=>navigate('/')}>
             <img src='https://1000logos.net/wp-content/uploads/2017/02/HM-Logo.png' width={100} />
         </div>
 

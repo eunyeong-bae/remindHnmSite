@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import PrivateRoute from '../page/PrivateRoute';
 
 const CardItem = ({cardItemList}) => {
     console.log(cardItemList)

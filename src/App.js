@@ -1,35 +1,20 @@
-import { useEffect, useState } from 'react';
 import './App.css';
-import CardItem from './component/CardItem';
 import Header from './component/Header';
-import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
+import LoginPage from './page/LoginPage';
+import ProductsPage from './page/ProductsPage';
+import PrivateRoute from './page/PrivateRoute';
 
 function App() {
-  const [ cardItemList, setCardItemList] = useState(null);
-
-  useEffect(() => {
-    getProductLists();
-  }, []);
-  
-  const getProductLists = async() => {
-    const result = await axios.get('http://localhost:3000/products')
-                    .then(res => {
-                      return res.data;
-                    })
-                    .catch(error=>{
-                      console.log(error);
-                    })
-
-    setCardItemList(result);
-  };
-
   return (
     <div className="container">
       <div className='main-wrap'>
         <Header />
-        <div className='d-flex main-content'>
-          <CardItem cardItemList={cardItemList}/>
-        </div>
+        <Routes>
+          <Route path='/' element={<ProductsPage/>} />
+          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/product/:id' element={<PrivateRoute />}/>
+        </Routes>
       </div>
     </div>
   );
