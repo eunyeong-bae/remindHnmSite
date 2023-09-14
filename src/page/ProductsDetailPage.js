@@ -7,7 +7,7 @@ const ProductsDetailPage = () => {
   const [ detailInfo, setDetailInfo] = useState({});
 
   const getProductDetailInfo = async() => {
-    const response = await axios(`http://localhost:5000/products/${id}`)
+    const response = await axios(`https://my-json-server.typicode.com/eunyeong-bae/remindHnmSite/products/${id}`)
               .then((res) => {
                 return res.data;
               })

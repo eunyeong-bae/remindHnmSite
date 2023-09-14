@@ -108,6 +108,7 @@ p{
 .menu-search input:focus {
   outline: none !important;
 }
+/************************header*************************/
 
 
 /* card item container area */
@@ -116,6 +117,14 @@ p{
   align-items: center;
   padding: 0 10px;
   margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.card-width{
+  width: 90%;
+}
+.card-width:hover{
+  width: 100%;
 }
 .item-img{
   height: 70%;
@@ -129,7 +138,7 @@ p{
   font-size: 14px;
   margin-bottom: 2px;
 }
-
+/************************card list*************************/
 
 /* login page container */
 .login-wrap{
@@ -159,6 +168,8 @@ p{
   cursor: pointer;
   margin-top: 10px;
 }
+/************************login page*************************/
+
 
 /* product detail page area */
 .product-detail{
@@ -195,12 +206,25 @@ p{
   color: white;
   cursor: pointer;
 }
+/*********************product detail page****************/
+
 
 
 /* responsive web style*/
 @media screen and (max-width:1200px) {
   .main-wrap{
     width: 100%;
+  }
+  .card-item{
+    width: 35%;
+    margin: 20px auto;
+  }
+  .card-item:hover{
+    width: 40%;
+  }
+  .item-description p {
+    font-size: 18px;
+    margin-bottom: 5px;
   }
 }
 @media screen and (max-width:997px) {
@@ -217,5 +241,12 @@ p{
   }
   .product-description{
     width: 50%;
+  }
+  .card-item{
+    width: 60%;
+    margin: 20px auto;
+  }
+  .card-item:hover{
+    width: 70%;
   }
 }

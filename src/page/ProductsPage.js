@@ -9,7 +9,7 @@ const ProductsPage = () => {
 
     const getProductLists = async() => {
       const searchkeyword = query.get('q') || '';
-      const result = await axios.get(`http://localhost:5000/products?q=${searchkeyword}`)
+      const result = await axios.get(`https://my-json-server.typicode.com/eunyeong-bae/remindHnmSite/products?q=${searchkeyword}`)
                       .then(res => {
                         return res.data;
                       })
