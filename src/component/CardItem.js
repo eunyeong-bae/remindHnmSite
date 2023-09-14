@@ -1,14 +1,19 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import PrivateRoute from '../page/PrivateRoute';
+import { Navigate, useNavigate } from 'react-router-dom';
+import PrivateRoute from '../route/PrivateRoute';
 
 const CardItem = ({cardItemList}) => {
-    console.log(cardItemList)
+    const navigate = useNavigate();
+
+   const showDetail = (id) => {
+    navigate(`/products/${id}`)
+   };
+
   return (
     <>
         { cardItemList && cardItemList.map(item => {
             return (
-                <div className='card-item'>
+                <div className='card-item' onClick={showDetail.bind(this, item.id)}>
                     <div className='item-img'>
                         <img src={item.img} width='100%' height='100%'/>
                     </div>
