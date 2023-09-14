@@ -20,7 +20,7 @@ p{
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 10px;
+  padding: 20px;
 }
 .main-content{
   flex-wrap: wrap;
@@ -36,25 +36,25 @@ p{
   align-items: center;
   justify-content: space-between;
 }
-.header-bars {
-  position: relative;
-}
 .side-navbar{
   position:absolute;
   top: 0;
   left: 0;
-  width: 200px;
+  width: 0;
   height: 100vh;
   padding: 20px;
   background-color: antiquewhite;
   z-index: 5;
-  border: 1px solid;
   visibility: hidden;
-  transition: all 1s;
 }
 .side-close-btn{
   text-align: end;
   height: 25px;
+  cursor: pointer;
+}
+.show {
+  width: 300px;
+  visibility: visible;
 }
 .side-list-wrap{
   height: calc(100% - 25px);
@@ -62,13 +62,18 @@ p{
   align-items: center;
 }
 .side-list-wrap p {
-  margin: 10px;
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
 }
-
+.side-list-wrap p:hover {
+  font-size: 16px;
+}
 
 /* header login area */
 .header-login{
-  width: auto;
+  width: 90px;
   height: 100%;
   justify-content: space-between;
   align-items: center;
@@ -176,7 +181,6 @@ p{
   width: 80%;
   height: 600px;
   margin: 20px auto;
-  border: 1px solid;
 }
 .product-img{
   width: 55%;

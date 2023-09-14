@@ -21,23 +21,28 @@ const Header = ({authenticate, setAuthenticate}) => {
          navigate('/login');
     };
 
+    const handleSideNav = (state) => {
+        const sideNavbar = document.querySelector('.side-navbar');
+        state === 'show' ? sideNavbar.classList.add('show') : sideNavbar.classList.remove('show')
+    };
+
   return (
     <div className='d-flex header-wrap'>
+        <div className='side-navbar'>
+            <div className='side-close-btn' onClick={handleSideNav.bind(this,'hide')}>
+                <FontAwesomeIcon icon={faX} />
+            </div>
+            <div className='d-flex side-list-wrap'>
+                { navMenu.map(menu => {
+                    return (
+                        <p>{menu}</p>
+                    )
+                })}
+            </div>
+        </div>
         <div className='d-flex header-top'>
-            <div className='header-bars'>
-                <FontAwesomeIcon className='side-bars' icon={faBars} size="lg" />
-                <div className='side-navbar'>
-                    <div className='side-close-btn'>
-                        <FontAwesomeIcon icon={faX} />
-                    </div>
-                    <div className='d-flex side-list-wrap'>
-                        { navMenu.map(menu => {
-                            return (
-                                <p>{menu}</p>
-                            )
-                        })}
-                    </div>
-                </div>
+            <div style={{cursor:'pointer'}} onClick={handleSideNav.bind(this, 'show')}>
+                <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
             <div className='d-flex header-login'>
                 <FontAwesomeIcon icon={faUser} size="lg" />
