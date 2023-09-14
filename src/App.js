@@ -4,19 +4,16 @@ import { Route, Routes } from 'react-router-dom';
 import LoginPage from './page/LoginPage';
 import ProductsPage from './page/ProductsPage';
 import PrivateRoute from './route/PrivateRoute';
-import { useEffect, useState } from 'react';
 
 function App() {
-  const [authenticate, setAuthenticate] = useState(false);
-
   return (
     <div className="container">
       <div className='main-wrap'>
-        <Header authenticate={authenticate} setAuthenticate={setAuthenticate}/>
+        <Header />
         <Routes>
           <Route path='/' element={<ProductsPage/>} />
-          <Route path='/login' element={<LoginPage setAuthenticate={setAuthenticate}/>}/>
-          <Route path='/products/:id' element={<PrivateRoute authenticate={authenticate}/>}/>
+          <Route path='/login' element={<LoginPage />}/>
+          <Route path='/products/:id' element={<PrivateRoute />}/>
         </Routes>
       </div>
     </div>

@@ -3,11 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars,faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { authenticateAction } from '../redux/actions/authenticateAction';
 
 const navMenu = ['여성','Divided','남성','신생아/유아','아동','H&M HOME','Sale','지속가능성'];
 
-const Header = ({authenticate, setAuthenticate}) => {
+const Header = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authenticate = useSelector(state => state.auth.authenticate);
+
     const productSearch = (e) => {
         if(e.key === 'Enter'){
             const keyword = e.target.value;
@@ -17,7 +22,8 @@ const Header = ({authenticate, setAuthenticate}) => {
     };
 
     const goToLogin = () => {
-        setAuthenticate(!authenticate);
+        // setAuthenticate(!authenticate);
+        dispatch(authenticateAction.login())
          navigate('/login');
     };
 
