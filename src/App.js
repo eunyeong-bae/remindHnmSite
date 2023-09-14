@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="container">
       <div className='main-wrap'>
-        <Header />
+        <Header authenticate={authenticate} setAuthenticate={setAuthenticate}/>
         <Routes>
           <Route path='/' element={<ProductsPage/>} />
           <Route path='/login' element={<LoginPage setAuthenticate={setAuthenticate}/>}/>

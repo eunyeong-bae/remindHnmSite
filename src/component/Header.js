@@ -6,8 +6,21 @@ import { useNavigate } from 'react-router-dom';
 
 const navMenu = ['여성','Divided','남성','신생아/유아','아동','H&M HOME','Sale','지속가능성'];
 
-const Header = () => {
+const Header = ({authenticate, setAuthenticate}) => {
     const navigate = useNavigate();
+    const productSearch = (e) => {
+        if(e.key === 'Enter'){
+            const keyword = e.target.value;
+    
+            navigate(`/?q=${keyword}`);
+        }
+    };
+
+    const goToLogin = () => {
+        setAuthenticate(!authenticate);
+         navigate('/login');
+    };
+
   return (
     <div className='d-flex header-wrap'>
         <div className='d-flex header-top'>
@@ -28,7 +41,7 @@ const Header = () => {
             </div>
             <div className='d-flex header-login'>
                 <FontAwesomeIcon icon={faUser} size="lg" />
-                <p onClick={() => navigate('/login')}>로그인</p>
+                <p onClick={goToLogin}>{authenticate ? '로그아웃':'로그인'}</p>
             </div>
         </div>
 
@@ -48,7 +61,7 @@ const Header = () => {
             </div>
             <div className='d-flex menu-search'>
                 <FontAwesomeIcon icon={faMagnifyingGlass} size="sm" />
-                <input type='text' placeholder='제품검색' />
+                <input type='text' placeholder='제품검색' onKeyDown={(event) => productSearch(event)}/>
             </div>
         </div>
     </div>

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import CardItem from '../component/CardItem';
-import { Routes, Route} from 'react-router-dom';
+import { useSearchParams} from 'react-router-dom';
 
 const ProductsPage = () => {
     const [ cardItemList, setCardItemList] = useState([]);
+    const [query, setQuery] = useSearchParams();
 
     const getProductLists = async() => {
-      const result = await axios.get('http://localhost:5000/products')
+      const searchkeyword = query.get('q') || '';
+      const result = await axios.get(`http://localhost:5000/products?q=${searchkeyword}`)
                       .then(res => {
                         return res.data;
                       })
@@ -21,6 +23,10 @@ const ProductsPage = () => {
     useEffect(() => {
       getProductLists();
     }, []);
+
+    useEffect(()=>{
+      getProductLists();
+    }, [query])
 
     return (
     <div className='d-flex main-content'>
