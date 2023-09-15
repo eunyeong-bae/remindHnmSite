@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios';
+import React, { useEffect } from 'react'
 import CardItem from '../component/CardItem';
 import { useSearchParams} from 'react-router-dom';
 import {productAction} from '../redux/actions/productAction';
 import {useDispatch, useSelector} from 'react-redux';
 
 const ProductsPage = () => {
-  
+  let productList = useSelector(state => state.product.productList);
   const [query, setQuery] = useSearchParams();
-
   const dispatch = useDispatch();
+  
     /* redux middleware version */
   const getProductLists = () => {
     const searchkeyword = query.get('q') || '';
-    setQuery(searchkeyword)
     dispatch(productAction.getProductLists(searchkeyword));
 
   };
@@ -24,9 +22,7 @@ const ProductsPage = () => {
 
   useEffect(()=>{
     getProductLists();
-  }, [query])
-
-  const productList = useSelector(state => state.product.productList);
+  }, [query]);
 
     /* original version 
     const getProductLists = async() => {

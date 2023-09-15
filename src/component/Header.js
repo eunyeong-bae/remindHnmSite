@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars,faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBars,faMagnifyingGlass, faX,faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faHeart } from '@fortawesome/free-regular-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authenticateAction } from '../redux/actions/authenticateAction';
@@ -50,9 +50,17 @@ const Header = () => {
             <div style={{cursor:'pointer'}} onClick={handleSideNav.bind(this, 'show')}>
                 <FontAwesomeIcon icon={faBars} size="lg" />
             </div>
-            <div className='d-flex header-login'>
-                <FontAwesomeIcon icon={faUser} size="lg" />
-                <p onClick={goToLogin}>{authenticate ? '로그아웃':'로그인'}</p>
+            <div className='d-flex header-right'>
+                <div className='header-icon' onClick={() =>navigate('/favorite')}>
+                    <FontAwesomeIcon icon={faHeart} size='lg'/>
+                </div>
+                <div className='header-icon' onClick={() =>navigate('/cart')}>
+                    <FontAwesomeIcon icon={faCartShopping} size="lg" />
+                </div>
+                <div className='d-flex header-login header-icon'>
+                    <FontAwesomeIcon icon={faUser} size="lg" />
+                    <p onClick={goToLogin}>{authenticate ? '로그아웃':'로그인'}</p>
+                </div>
             </div>
         </div>
 

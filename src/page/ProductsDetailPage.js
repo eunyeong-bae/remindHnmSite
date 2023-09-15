@@ -1,17 +1,25 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { productAction } from '../redux/actions/productAction';
 
 const ProductsDetailPage = () => {
   const {id} = useParams();
-  const productList = useSelector(state => state.product.productList);
+  const productList = useSelector(state => state.product.productDetailList);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(productAction.getProductDetailInfo(id));
   }, []);
+
+  const putItemToCart = (Item) => {
+    dispatch({
+      type:'PUT_PRODUCT_CART',
+      payload:{Item}
+    });
+    navigate('/cart');
+  };
 
   return (
     <div className='d-flex product-detail'>
@@ -29,7 +37,7 @@ const ProductsDetailPage = () => {
               )
             })}
           </select>
-          <button>추가</button>
+          <button onClick={()=>putItemToCart(productList)}>추가</button>
       </div>
     </div>
   )
