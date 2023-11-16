@@ -3,12 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { useDispatch } from 'react-redux';
 
 const CardItem = ({cardItemList, page}) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
    const showDetail = (id) => {
     navigate(`/products/${id}`)
+   };
+
+   const putItemToFavoriteCart = (item) => {
+    dispatch({
+        type:"PUT_FAVORITE_CART",
+        payload:{item}
+    })
+    navigate('/favorite');
    };
 
   return (
@@ -44,7 +54,7 @@ const CardItem = ({cardItemList, page}) => {
                                 <p>{item.title}</p>
                                 <p style={{fontWeight:'600', color:'red'}}>₩{item.price}</p>        
                             </div>
-                            <div className='favorite-button' onClick={() => navigate('/favorite')}>
+                            <div className='favorite-button' onClick={putItemToFavoriteCart.bind(this, item)}>
                                 <FontAwesomeIcon className='heart' icon={faHeart} size="xl" />
                             </div>
                         </div>

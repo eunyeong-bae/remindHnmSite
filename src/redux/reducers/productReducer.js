@@ -2,7 +2,7 @@ let initialState = {
     productList: [],
     productDetailList:[],
     cartList: [],
-    FavoriteList: [],
+    favoriteList: [],
 }
 
 function productReducer(state=initialState, action){
@@ -15,6 +15,8 @@ function productReducer(state=initialState, action){
             return {...state, productDetailList: payload.response}
         case "PUT_PRODUCT_CART":
             return {...state, cartList: [...state.cartList, payload.Item]}
+        case "PUT_FAVORITE_CART":
+            return {...state, favoriteList: [...state.favoriteList, payload.item]}
         default:
            return {...state}
     }
